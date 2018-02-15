@@ -1,0 +1,123 @@
+package Ejr2;
+
+import java.util.Scanner;
+
+public class Tester {
+	
+	public String nombre;
+	public String apellido;
+	public String genero;
+	static int anioNacimiento;
+	static int anioIngreso;
+	static String sueldo;
+	static String [] emp= new String [6];
+	
+	public void agregarContacto()
+	{
+		Scanner entrada = new Scanner (System.in);
+		System.out.println("Ingrese los nombre del empleado");
+		nombre=entrada.nextLine();
+		emp[0]=nombre;
+		System.out.println("Ingrese los apellidos del empleado");
+		apellido=entrada.nextLine();
+		emp[1]=apellido;
+		System.out.println("Ingrese el genero del empleado");
+		genero=entrada.nextLine();
+		emp[2]=genero;
+		System.out.println("Ingrese el año de nacimiento del empleado");
+		anioNacimiento=entrada.nextInt();
+		emp[3]=Integer.toString(anioNacimiento);
+		do
+		{
+			System.out.println("Ingrese el año de ingreso del empleado");
+			anioIngreso=entrada.nextInt();
+			emp[4]=Integer.toString(anioIngreso);
+		}while(anioIngreso<anioNacimiento);
+		System.out.println("Ingrese el sueldo del empleado");
+		sueldo=entrada.nextLine();
+		sueldo=entrada.nextLine();
+		emp[5]=sueldo;
+		
+	}
+	
+	public void modificarSalario()
+	{
+		Scanner entrada = new Scanner (System.in);
+		System.out.println("Ingrese el nuevo salario del empleado");
+		sueldo=entrada.nextLine();
+		emp[5]=sueldo;
+	}
+	
+	public void antiguedadEmpresa()
+	{
+		int antiguedad;
+		antiguedad=2018-anioIngreso;
+		System.out.println("La antiguedad de su empleado en la empresa es de "+antiguedad);
+	}
+	
+	public void edadEmpleado()
+	{
+		int edad;
+		edad=2018-anioNacimiento;
+		System.out.println("Su empleado tiene "+edad);
+	}
+	
+	public void saberPrestacion()
+	{
+		double prestacion=0;
+		System.out.println(sueldo);
+		int suel=Integer.parseInt(sueldo);
+		System.out.println(suel);
+		prestacion=(suel*(2018-anioIngreso))/12;
+		System.out.println("Las prestaciones que tiene su empreado son de: "+prestacion);
+	}
+	public void datosEmpleado()
+	{
+		System.out.println("Los datos del empleado son: ");
+		for (int i = 0; i < emp.length; i++) {
+			System.out.print(emp[i]+"\t");
+		}
+	}
+	
+	public void menu()
+	{
+		Scanner entrada = new Scanner (System.in);
+		int sel;
+		Tester obj = new Tester();
+		System.out.println("\n Que accion deseas hacer: \n 1)Modificar salario \n 2)Saber antiguedad de la empresa \n "
+				+ "3)Saber edad del empleado \n 4)Saber prestaciones \n 5)Saber datos del Empleado \n 6)Salir");
+		sel=entrada.nextInt();
+		switch (sel) {
+		case 1:
+			obj.modificarSalario();
+			obj.menu();
+			break;
+		case 2:
+			obj.antiguedadEmpresa();
+			obj.menu();
+			break;
+		case 3:
+			obj.edadEmpleado();
+			obj.menu();
+			break;
+		case 4:
+			obj.saberPrestacion();
+			obj.menu();
+			break;
+		case 5:
+			obj.datosEmpleado();
+			obj.menu();
+			break;
+		case 6:
+			System.exit(0);
+			break;
+		}
+	}
+
+	public static void main(String[] args) {
+		Tester obj = new Tester();
+		obj.agregarContacto();
+		obj.menu();
+		
+	}
+}
